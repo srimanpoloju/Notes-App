@@ -7,6 +7,14 @@
     "install-all": "npm --prefix backend install && npm --prefix frontend install"
   },
   "devDependencies": {
-    "concurrently": "^8.2.0"
+    "@typescript-eslint/eslint-plugin": "^6.9.0",
+    "@typescript-eslint/parser": "^6.9.0",
+    "concurrently": "^8.2.0",
+    "eslint": "^8.47.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.34.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^3.7.1"
   }
 }

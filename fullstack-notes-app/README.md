@@ -31,6 +31,21 @@ npm run dev
 
 This starts the frontend on http://localhost:5173. The frontend expects the backend at `http://localhost:4000/api` by default.
 
+## Docker / Compose
+
+You can run the app with Docker Compose for a quick local environment (backend in dev mode, frontend served by nginx):
+
+```bash
+docker-compose up --build
+```
+
+The frontend will be available at http://localhost:5173 and the backend at http://localhost:4000.
+
+## CI Status
+
+![CI](https://github.com/srimanpoloju/Notes-App/actions/workflows/ci.yml/badge.svg)
+
+
 ## API
 
 - GET /api/notes — list notes

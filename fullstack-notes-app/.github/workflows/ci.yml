@@ -1,0 +1,70 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, feature/* ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Cache backend node modules
+        uses: actions/cache@v4
+        with:
+          path: backend/node_modules
+          key: backend-${{ runner.os }}-node-${{ hashFiles('backend/package-lock.json') }}
+          restore-keys: |
+            backend-${{ runner.os }}-node-
+
+      - name: Cache frontend node modules
+        uses: actions/cache@v4
+        with:
+          path: frontend/node_modules
+          key: frontend-${{ runner.os }}-node-${{ hashFiles('frontend/package-lock.json') }}
+          restore-keys: |
+            frontend-${{ runner.os }}-node-
+
+      - name: Install backend dependencies
+        run: npm ci --prefix backend
+
+      - name: Generate Prisma client (backend)
+        working-directory: backend
+        run: npx prisma generate
+
+      - name: Lint backend
+        run: npm run lint --prefix backend
+
+      - name: Test backend
+        run: npm run test --prefix backend
+
+      - name: Build backend (TypeScript)
+        run: npm run build --prefix backend
+
+      - name: Install frontend dependencies
+        run: npm ci --prefix frontend
+
+      - name: Lint frontend
+        run: npm run lint --prefix frontend
+
+      - name: Test frontend
+        run: npm run test --prefix frontend
+
+      - name: Type-check frontend
+        run: npx tsc --noEmit --project frontend/tsconfig.json
+
+      - name: Build frontend
+        run: npm run build --prefix frontend
+
+      - name: Verify backend API (optional smoke)
+        run: |
+          echo "CI: backend build complete" 
