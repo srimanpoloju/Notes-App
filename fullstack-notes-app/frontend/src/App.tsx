@@ -152,9 +152,10 @@ export default function App() {
 
       {/* Decorative animated butterflies */}
       <div className="butterflies" aria-hidden>
-        {Array.from({ length: 7 }).map((_, i) => (
-          <div key={i} className="butterfly" style={{ ['--i' as any]: i }} />
-        ))}
+        {Array.from({ length: 7 }).map((_, i) => {
+          const varStyle = ({ ['--i']: i } as unknown) as React.CSSProperties
+          return <div key={i} className="butterfly" style={varStyle} />
+        })}
       </div>
 
       <section className="composer">
