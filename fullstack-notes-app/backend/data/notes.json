@@ -1,0 +1,15 @@
+[
+  {
+    "id": "00000000-0000-4000-8000-000000000001",
+    "title": "Welcome to Notes",
+    "content": "This is a demo note. Use the UI to add, edit, and delete notes.\n\nTip: Try creating a new note using the composer above.",
+    "createdAt": "2025-12-11T00:00:00.000Z",
+    "updatedAt": "2025-12-11T00:00:00.000Z"
+  },
+  {
+    "id": "f2093e77-24bf-4eba-918c-eeb1621db86c",
+    "title": "hello team",
+    "content": "we have a meeting\n",
+    "createdAt": "2025-12-11T20:51:57.319Z"
+  }
+]
